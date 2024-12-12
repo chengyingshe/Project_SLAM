@@ -1,9 +1,9 @@
-## LONER
+## LONER论文详解
 
-### 论文原理分析
+### 原因
 
-1. 仅使用了LiDAR数据实现实时定位和建图，与我们本次实验的目的相同
-2. 论文中首次使用神经网络，利用有监督的方式训练模型来代替传统的SLAM算法
+1. 改论文仅使用了LiDAR数据实现实时定位和建图，与我们本次实验的目的相同
+2. 论文中首次使用神经网络，利用有监督的方式训练模型来代替传统的SLAM算法，并在NICE-SLAM数据集上达到了SOTA
 
 ### 目标
 
@@ -13,6 +13,25 @@
 
 ## 学习笔记
 
-### KD-Tree
+> 参考论文中的`Related Work`学习SLAM中的相关知识，并了解论文中提出的对比模型，总结论文中提出的创新点，为后续改进做准备
 
-### ICP Alignment Algorithm
+### LiDAR SLAM
+
+讲解传统的基于LiDAR的SLAM算法的原理
+
+#### KD-Tree
+
+#### ICP Alignment Algorithm
+
+### NeRF
+
+讲解基于NeRF的SLAM算法的原理
+
+### Methodology
+
+> 讲述论文中提出的算法细节，包括模型架构、Loss Function、训练和测试流程等，详细说明论文中提出的改进
+
+### Development
+
+> 基于上面的总结，提出可能的改进方案
+
