@@ -1,3 +1,4 @@
 *
 !.gitignore
 !kd-tree/
+!kd-tree/**
