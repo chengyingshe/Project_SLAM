@@ -1,0 +1,6 @@
+*
+!.gitignore
+!install_env.sh
+!README.md
+!src/
+!src/**
