@@ -17,98 +17,79 @@
     >
     > - `Livox-SDK2`
     >
-    >   ```shell
-    >   git clone https://github.com/Livox-SDK/Livox-SDK2.git
-    >   cd Livox-SDK2/
-    >   mkdir -p build && cd build
-    >   cmake .. && make -j4
-    >   sudo make install
-    >   ```
+    > ```shell
+    > git clone https://github.com/Livox-SDK/Livox-SDK2.git
+    > cd Livox-SDK2/
+    > mkdir -p build && cd build
+    > cmake .. && make -j4
+    > sudo make install
+    > ```
     >
     > - `Sophus`
     >
-    >   ```shell
-    >   git clone https://github.com/strasdat/Sophus.git
-    >   cd Sophus
-    >   git checkout 1.22.10
-    >   mkdir -p build && cd build
-    >   cmake .. -DSOPHUS_USE_BASIC_LOGGING=ON && make -j4
-    >   sudo make install
-    >   ```
+    > ```shell
+    > git clone https://github.com/strasdat/Sophus.git
+    > cd Sophus
+    > git checkout 1.22.10
+    > mkdir -p build && cd build
+    > cmake .. -DSOPHUS_USE_BASIC_LOGGING=ON && make -j4
+    > sudo make install
+    > ```
     >
     > - `gtsam`
     >
-    >   ```shell
-    >   git clone https://github.com/borglab/gtsam.git
-    >   cd gtsam
-    >   mkdir -p build && cd build
-    >   cmake .. && make -j4
-    >   sudo make install
-    >   ```
+    > ```shell
+    > git clone https://github.com/borglab/gtsam.git
+    > cd gtsam
+    > mkdir -p build && cd build
+    > cmake .. && make -j4
+    > sudo make install
+    > ```
     >
     > - `livox_ros_driver2`
     >
-    >   ```shell
-    >   git clone https://github.com/Livox-SDK/livox_ros_driver2.git src/livox_ros_driver2
-    >   cd src/livox_ros_driver2
-    >   source /opt/ros/humble/setup.sh
-    >   bash build.sh humble
-    >   ```
+    > ```shell
+    > cd src/livox_ros_driver2
+    > source /opt/ros/humble/setup.sh
+    > bash build.sh humble
+    > ```
 
-## 实例数据集
-```text
-链接: https://pan.baidu.com/s/1rTTUlVwxi1ZNo7ZmcpEZ7A?pwd=t6yb 提取码: t6yb 
---来自百度网盘超级会员v7的分享
-```
+2. Download the `rosbag` from [Baidu Drive](https://pan.baidu.com/s/1rTTUlVwxi1ZNo7ZmcpEZ7A?pwd=t6yb) | [Google Drive](https://drive.google.com/file/d/1i4dv1OYUWAe8PM3j4Wgpmw05ATLcE2a6/view), and then move it to `temp/fast_lio2_ros2/`
 
-## 部分脚本
+3. Use colcon to build all packages
 
-### 1.激光惯性里程计 
-```shell
-ros2 launch fastlio2 lio_launch.py
-ros2 bag play your_bag_file
-```
+   ```shell
+   cd fast_lio2_ros2
+   colcon build --paths src/*
+   ```
 
-### 2.里程计加回环
-#### 启动回环节点
-```shell
-ros2 launch pgo pgo_launch.py
-ros2 bag play your_bag_file
-```
-#### 保存地图
-```shell
-ros2 service call /pgo/save_maps interface/srv/SaveMaps "{file_path: 'your_save_dir', save_patches: true}"
-```
 
-### 3.里程计加重定位
-#### 启动重定位节点
-```shell
-ros2 launch localizer localizer_launch.py
-ros2 bag play your_bag_file // 可选
-```
-#### 设置重定位初始值
-```shell
-ros2 service call /localizer/relocalize interface/srv/Relocalize "{"pcd_path": "your_map.pcd", "x": 0.0, "y": 0.0, "z": 0.0, "yaw": 0.0, "pitch": 0.0, "roll": 0.0}"
-```
-#### 检查重定位结果
-```shell
-ros2 service call /localizer/relocalize_check interface/srv/IsValid "{"code": 0}"
-```
+4. Run FAST-LIO2
 
-### 4.一致性地图优化
-#### 启动一致性地图优化节点
-```shell
-ros2 launch hba hba_launch.py
-```
-#### 调用优化服务
-```shell
-ros2 service call /hba/refine_map interface/srv/RefineMap "{"maps_path": "your maps directory"}"
-```
-**如果需要调用优化服务，保存地图时需要设置save_patches为true**
+   ```shell
+   # terminal 1
+   source install/setup.bash
+   ros2 bag play <ros2-bag>
+   
+   # terminal 2
+   source install/setup.bash
+   ros2 launch fastlio2 lio_launch.py
+   ```
+
+## Testing Data
+
+- You can download the preprocessed **ros2bag** file from  [Baidu Drive](https://pan.baidu.com/s/1rTTUlVwxi1ZNo7ZmcpEZ7A?pwd=t6yb) | [Google Drive](https://drive.google.com/file/d/1i4dv1OYUWAe8PM3j4Wgpmw05ATLcE2a6/view)
+
+- You can also download the **ros1bag** provided by [FAST_LIO](https://github.com/hku-mars/FAST_LIO?tab=readme-ov-file#4-rosbag-example) from [Google Drive](https://drive.google.com/drive/folders/1CGYEJ9-wWjr8INyan6q1BZz_5VtGB-fP?usp=sharing), and then convert them to `ros2bag` format using the scripts below:
+
+  ```shell
+  pip install rosbags
+  rosbags-convert --src <ros1-bag> --dst <ros2-bag>
+  ```
 
 ## Acknowledge
 
-1. https://github.com/hku-mars/FAST_LIO
-2. https://github.com/Livox-SDK/Livox-SDK2
-3. https://github.com/Livox-SDK/livox_ros_driver2
-4. https://github.com/strasdat/Sophus
+- https://github.com/hku-mars/FAST_LIO
+- https://github.com/Livox-SDK/Livox-SDK2
+- https://github.com/Livox-SDK/livox_ros_driver2
+- https://github.com/strasdat/Sophus
