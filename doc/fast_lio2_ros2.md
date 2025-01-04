@@ -78,3 +78,26 @@
 - 参数容易根据具体应用场景调整
 - 可以根据需求调整优化频率
 - 优化策略灵活可配置
+
+## 评测结果
+
+#### 可用数据集(ros2bag)
+
+需要包含以下topic：
+- `/livox/lidar[livox_ros_driver2/msg/CustomMsg]`
+- `/livox/imu[sensor_msgs/msg/Imu]`
+
+满足要求的ROS2Bag文件：
+- `ros_bag/rosbag2_2024_06_20-16_46_47` (街道数据)
+- `ros_bag/2020-09-16-quick-shack` (无人机数据)
+- `100hz_2021-02-05-19-50-54`
+
+
+#### 结果图片
+
+> 见文件夹：`doc/fast_lio2_ros2.assets/`
+
+轨迹可视化图片（包括x, y, z, v, roll, yaw, pitch）
+![](../images/image1.png)
+![](../images/image2.png)
+![](../images/image3.png)

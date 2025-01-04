@@ -2,3 +2,5 @@
 !.gitignore
 !fast_lio2_ros2/
 !fast_lio2_ros2/**
+!enhanced_fast_lio2_ros2/
+!enhanced_fast_lio2_ros2/**
