@@ -4,3 +4,5 @@
 !fast_lio2_ros2/**
 !enhanced_fast_lio2_ros2/
 !enhanced_fast_lio2_ros2/**
+!README.md
+!install_env.sh
