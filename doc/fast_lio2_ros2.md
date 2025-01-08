@@ -81,6 +81,18 @@
 
 ## 评测结果
 
+#### 运行平台
+
+- VMware Workstation 16 Pro
+- 内存16GB、处理器8个单核、硬盘100GB
+- 系统：Ubuntu 22.04
+
+#### 运行时间
+
+- `v1` (原始版本FAST-LIO2): 35ms
+- `v2` (添加了Degenerate-Detection): 40ms
+- `v3` (添加了回环检测): 43ms 
+
 #### 可用数据集(ros2bag)
 
 需要包含以下topic：
