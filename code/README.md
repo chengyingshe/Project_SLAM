@@ -117,11 +117,31 @@
   rosbags-convert --src <ros1-bag> --dst <ros2-bag>
   ```
 
-## Results
+## Evaluation
 
-![](../images/image1.png)
-![](../images/image2.png)
-![](../images/image3.png)
+1. Install `evo`:
+
+   ```shell
+   pip install evo
+   ```
+
+2. `evo_ape`: Absolute Pose Error
+
+   ```shell
+   evo_ape kitti gt.kitti target.kitti -p --save_results results/ape.zip
+   ```
+
+3. `evo_rpe`: Relative Pose Error
+
+   ```shell
+   evo_rpe kitti gt.kitti target.kitti -va -p --save_results results/rpe.zip
+   ```
+
+4. Process multiple results from a metric:
+
+   ```shell
+   evo_res results/*.zip -p --save_table results/table.csv
+   ```
 
 ## Acknowledge
 
