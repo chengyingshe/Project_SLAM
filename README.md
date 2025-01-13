@@ -4,7 +4,7 @@
 
 This repository contains the code of the project of the class SI360.
 
-- `code`: the ros2 code
+- [code](code/README.md): our open-source ros2 project code
 - `ppt`: all powerpoint files
 - `pdf`: all report files
 - `doc`: all preparing documents and Literature Reading
