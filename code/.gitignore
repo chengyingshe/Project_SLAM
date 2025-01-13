@@ -4,5 +4,7 @@
 !fast_lio2_ros2/**
 !enhanced_fast_lio2_ros2/
 !enhanced_fast_lio2_ros2/**
+!kitti/
+!kitti/**
 !README.md
 !install_env.sh

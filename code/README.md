@@ -51,26 +51,23 @@
     > ```shell
     > cd src/livox_ros_driver2
     > source /opt/ros/humble/setup.sh
-    > bash build.sh humble
+    > bash build.sh humble  # it'll build all packages in `src/`
     > ```
 
-2. Download the `rosbag` from [Baidu Drive](https://pan.baidu.com/s/1rTTUlVwxi1ZNo7ZmcpEZ7A?pwd=t6yb) | [Google Drive](https://drive.google.com/file/d/1i4dv1OYUWAe8PM3j4Wgpmw05ATLcE2a6/view), and then move it to `temp/fast_lio2_ros2/`
-
-3. Use colcon to build all packages
+2. Download the `ros2bag` from [Baidu Drive](https://pan.baidu.com/s/1YKzqZwJ028OCWlzXE_jpKg?pwd=1234) or [Google Drive](https://drive.google.com/file/d/1n9w-Rf8kakgsKgI345gRvSOBWSkfqdtr/view?usp=sharing), and then move it to `code/ros2bag/` and extract it:
 
    ```shell
-   cd fast_lio2_ros2
-   colcon build --paths src/*
+   tar -zxvf ros2bag_with_gt.tar.gz
    ```
 
-
-4. Run `fast_lio2_ros2`
+3. Run `fast_lio2_ros2_v1`
 
    ```shell
    cd fast_lio2_ros2
 
    # terminal 1
    source install/setup.bash
+   ln -s ../ros2bag/ros2bag_with_gt
    ros2 bag play <ros2-bag>
    
    # terminal 2
@@ -78,7 +75,7 @@
    ros2 launch fastlio2 lio_launch.py
    ```
 
-5. Run `fast_lio2_ros2_v2` (with [Degenerate-Detection](https://ieeexplore.ieee.org/abstract/document/10610340))
+4. Run `fast_lio2_ros2_v2` (with [Degenerate-Detection](https://github.com/jisehua/Degenerate-Detection))
 
    ```shell
    cd fast_lio2_ros2
@@ -92,7 +89,7 @@
    ros2 launch fastlio2 fastlio2.launch.py
    ```
 
-6. Run `fast_lio2_ros2_v3` (with `SC-PGO`)
+5. Run `fast_lio2_ros2_v3` (with `SC-PGO`)
 
    ```shell
    cd enhanced_fast_lio2_ros2
@@ -108,9 +105,7 @@
 
 ## Testing Data
 
-- You can download the preprocessed **ros2bag** file from  [Baidu Drive](https://pan.baidu.com/s/1rTTUlVwxi1ZNo7ZmcpEZ7A?pwd=t6yb) | [Google Drive](https://drive.google.com/file/d/1i4dv1OYUWAe8PM3j4Wgpmw05ATLcE2a6/view)
-
-- You can also download the **ros1bag** provided by [FAST_LIO](https://github.com/hku-mars/FAST_LIO?tab=readme-ov-file#4-rosbag-example) from [Google Drive](https://drive.google.com/drive/folders/1CGYEJ9-wWjr8INyan6q1BZz_5VtGB-fP?usp=sharing), and then convert them to `ros2bag` format using the scripts below:
+- You can download the **ros1bag** provided by [FAST_LIO](https://github.com/hku-mars/FAST_LIO?tab=readme-ov-file#4-rosbag-example) from [Google Drive](https://drive.google.com/drive/folders/1CGYEJ9-wWjr8INyan6q1BZz_5VtGB-fP?usp=sharing), and then convert them to `ros2bag` format using the scripts below:
 
   ```shell
   pip install rosbags
