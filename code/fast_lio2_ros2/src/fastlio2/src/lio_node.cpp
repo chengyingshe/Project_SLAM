@@ -247,7 +247,10 @@ public:
         auto t1 = std::chrono::high_resolution_clock::now();
         m_builder->process(m_package);
         auto t2 = std::chrono::high_resolution_clock::now();
-
+        
+        auto time_used = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count() * 1000;
+        RCLCPP_INFO(get_logger(), "Time: %.2f ms", time_used);
+        
         if (m_node_config.print_time_cost)
         {
             auto time_used = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count() * 1000;

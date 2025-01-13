@@ -1,5 +1,5 @@
 import launch
-import launch_ros.actions
+from launch_ros.actions import Node
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
@@ -17,7 +17,7 @@ def generate_launch_description():
 
     return launch.LaunchDescription(
         [
-            launch_ros.actions.Node(
+            Node(
                 package="fastlio2",
                 namespace="fastlio2",
                 executable="lio_node",
@@ -25,7 +25,7 @@ def generate_launch_description():
                 output="screen",
                 parameters=[{"config_path": config_path.perform(launch.LaunchContext())}]
             ),
-            launch_ros.actions.Node(
+            Node(
                 package="rviz2",
                 namespace="fastlio2",
                 executable="rviz2",

@@ -23,7 +23,7 @@ def generate_launch_description():
     # Original FastLIO node
     fastlio_node = Node(
         package='fastlio2',
-        namespace='fastlio2',  # 添加命名空间
+        namespace='fastlio2',
         executable='lio_node',
         name='lio_node',
         parameters=[{"config_path": config_path.perform(launch.LaunchContext())}],
@@ -33,7 +33,7 @@ def generate_launch_description():
     # PGO node
     pgo_node = Node(
         package='fastlio2',
-        namespace='fastlio2',  # 添加命名空间
+        namespace='fastlio2',
         executable='lio_pgo_node',
         name='lio_pgo_node',
         parameters=[{"config_path": pgo_config_path.perform(launch.LaunchContext())}],
